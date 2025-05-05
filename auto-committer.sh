@@ -11,7 +11,7 @@ max_hour=18
 commit_every_n_days=1
 ignore_weekends=true
 dry_run=false                 # Set to true for a test run
-timezone="Europe/Prague"     # Set your desired timezone (e.g., UTC, America/New_York)
+timezone="Europe/Prague"      # Set your desired timezone (e.g., UTC, America/New_York)
 
 # Commit messages
 commit_messages=(
