@@ -13,24 +13,6 @@ ignore_weekends=true
 dry_run=false                 # Set to true for a test run
 timezone="Europe/Prague"      # Set your desired timezone (e.g., UTC, America/New_York)
 
-# Commit messages
-commit_messages=(
-    "Work in progress"
-    "Update"
-    "Bug fixes"
-    "Refactor code"
-    "Random commit"
-    "Code cleanup"
-    "Added new feature"
-    "Improved performance"
-    "Fixed typos"
-    "Updated documentation"
-    "Enhanced user experience"
-    "Simplified logic"
-    "Refactored modules"
-    "Optimized loop"
-)
-
 # ======================== SAFETY CHECK ========================
 
 if [ ! -d .git ]; then
@@ -90,13 +72,12 @@ while [ "$current" -le "$end" ]; do
 
         commit_epoch=$((current + hour * 3600 + minute * 60 + second))
         commit_time=$(format_datetime "$commit_epoch")
-        message=${commit_messages[RANDOM % ${#commit_messages[@]}]}
 
-        echo "Commit on $(epoch_to_date "$current") at $commit_time — '$message'"
+        echo "Commit on $(epoch_to_date "$current") at $commit_time"
 
         if ! $dry_run; then
             GIT_AUTHOR_DATE="$commit_time" GIT_COMMITTER_DATE="$commit_time" \
-            git commit --allow-empty -m "$message"
+            git commit --allow-empty -m "$commit_time"
             ((commits_made++))
         fi
     done
